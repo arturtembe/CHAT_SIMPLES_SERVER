@@ -1,0 +1,23 @@
+{
+  "name": "chat_simples",
+  "version": "1.0.0",
+  "description": "",
+  "main": "./src/server.jsn",
+  "scripts": {
+    "dev": "node ./src/server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/arturtembe/CHAT_SIMPLES_SERVER.git"
+  },
+  "author": "Artur Jaime Tembe",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/arturtembe/CHAT_SIMPLES_SERVER/issues"
+  },
+  "homepage": "https://github.com/arturtembe/CHAT_SIMPLES_SERVER#readme",
+  "dependencies": {
+    "express": "^4.21.2",
+    "twilio": "^5.4.4"
+  }
+}
