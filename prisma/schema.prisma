@@ -1,0 +1,60 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+} 
+
+// Generos
+model Generos{
+  id Int @id @default(autoincrement())
+  designation String @default("") @unique
+  slug  String @unique
+  created_at DateTime @default(now())
+  update_at DateTime @updatedAt
+  
+  @@map("generos")
+}
+
+model Users {
+  id  Int @id @default(autoincrement())
+  nome String @default("")
+  email String @default("") @unique
+  created_at  DateTime @default(now())
+  updated_at  DateTime @updatedAt
+  users_first UsersConnected[] @relation("users_connected_first")
+  users_second UsersConnected[] @relation("users_connected_second")
+  
+  @@map("users") 
+}
+
+model UsersConnected {
+  id  Int @id @default(autoincrement())
+  user_id_first Int @default(0)
+  users_first Users @relation("users_connected_first", fields: [user_id_first], references: [id], onDelete: Restrict, onUpdate: Restrict)
+  user_id_second Int @default(0)
+  users_second Users @relation("users_connected_second", fields: [user_id_second], references: [id], onDelete: Restrict, onUpdate: Restrict)
+  created_at  DateTime @default(now())
+  updated_at  DateTime @updatedAt
+  messages Messages[] @relation("users_messages")
+  
+  @@map("users_send_receive") 
+}
+
+model Messages {
+  id  Int @id @default(autoincrement())
+  designation String @default("")
+  message String @default("")
+  created_at  DateTime @default(now())
+  updated_at  DateTime @updatedAt
+  user_id Int @default(0)
+  users_connected UsersConnected @relation("users_messages", fields: [user_id], references: [id], onDelete: Restrict, onUpdate: Restrict)
+  
+  @@map("messages") 
+}
+
