@@ -13,9 +13,9 @@
         }
     },
     "paths":{
-        "/product": {
+        "/user": {
             "get":{
-                "description":"Essa routa para consulta dos productos",
+                "description":"Essa routa para consulta dos usuarios",
                 "responses": {
                     "200": {
                         "content": {
@@ -23,7 +23,7 @@
                                 "schema": {
                                     "type": "array",
                                     "items": {
-                                        "$ref":"#/components/schemas/ResponseProduct"
+                                        "$ref":"#/components/schemas/ResponseUser"
                                     }
                                 }
                             }
@@ -31,6 +31,9 @@
                     },
                     "400": {
                         "description": "Ocorreu um erro ao consultar"
+                    },
+                    "501": {
+                        "description": "Houve um erro interno"
                     }
                 }
             }
@@ -129,43 +132,20 @@
                 },
                 "required":["name","price","retailer","amountInStock"]
             },
-            "ResponseProduct": {
+            "ResponseUser": {
                 "type": "object",
                 "properties": {
                     "name": {
                         "type": "string",
-                        "description": "Nome do producto a ser cadastrado",
-                        "example": "Manga"
+                        "description": "Nome do Usuario a ser cadastrado",
+                        "example": "Artur"
                     },
-                    "price": {
-                        "type": "number",
-                        "description": "Preco do producto a ser cadastrado",
-                        "example": 255.7
-                    },
-                    "retailer": {
-                        "enum": ["APP01","APP02","APP03"],
-                        "description": "Retailer do producto a ser cadastrado",
-                        "example": "APP02"
-                    },
-                    "amountInStock": {
-                        "type": "number",
-                        "description": "Amount do producto a ser cadastrado",
-                        "example": 250
-                    },
-                    "id": {
+                    "email": {
                         "type": "string",
-                        "description": "Id do producto cadastrado",
-                        "format": "uuid"
+                        "description": "Email a ser cadastrado",
+                        "example": "example@chatsimples.com"
                     }
                 }
-            }
-        },
-        "securitySchemes": {
-            "bearerAuth": {
-                "description": "Autenticacao utilizando JWT",
-                "type": "http",
-                "scheme": "bearer",
-                "bearerFormat": "JWT"
             }
         }
     }
