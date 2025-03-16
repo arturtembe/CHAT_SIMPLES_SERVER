@@ -10,6 +10,6 @@ const registerController = new RegisterUserController();
 // Add
 userRouter.get('/', viewController.handle);
 
-userRouter.get('/create', registerController.handle);
+userRouter.post('/create', registerController.handle);
 
 export default userRouter;
